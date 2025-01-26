@@ -1,0 +1,88 @@
+<mxfile host="65bd71144e">
+    <diagram name="Page-1" id="0783ab3e-0a74-02c8-0abd-f7b4e66b4bec">
+        <mxGraphModel dx="990" dy="723" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="54" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="51" target="53">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" value="&lt;u&gt;Battery&lt;/u&gt;&lt;br&gt;Makita 12V 5.0ah" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFB366;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="120" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="53" target="55">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="&lt;u&gt;Emergency &lt;br&gt;Stop SW&lt;/u&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFB366;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="210" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="&lt;u&gt;Main SW&lt;/u&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFB366;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="300" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="57" target="60">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="&lt;u&gt;In-Wheel Motor&lt;/u&gt;&lt;div&gt;8 inch hub motor&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#CCCCCC;" vertex="1" parent="1">
+                    <mxGeometry x="235" y="120" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" style="html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="60" target="74">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="&lt;u&gt;Motor Driver&lt;/u&gt;&lt;div&gt;ODrive V3.6&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#CCCCCC;" vertex="1" parent="1">
+                    <mxGeometry x="235" y="210" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="63" target="60">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="&lt;u&gt;In-Wheel Motor&lt;/u&gt;&lt;div&gt;8 inch hub motor&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#CCCCCC;" vertex="1" parent="1">
+                    <mxGeometry x="235" y="300" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontStyle=1" edge="1" parent="1" target="60">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="170" y="324" as="sourcePoint"/>
+                        <mxPoint x="230" y="294" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="70" value="&lt;u&gt;GPS module&lt;/u&gt;&lt;br&gt;simpleRTK2B" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFFF00;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="120" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="71" target="70">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="&lt;u&gt;GPS antenna&lt;/u&gt;&lt;br&gt;ANN-MB1-00" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFFF00;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="120" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="&lt;u&gt;LiDAR&lt;/u&gt;&lt;br&gt;RPLiDAR S1" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFFF00;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="300" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="74" target="60">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="&lt;u&gt;PC&lt;/u&gt;&lt;br&gt;Jetson Orin Nano" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#00FF00;" vertex="1" parent="1">
+                    <mxGeometry x="510" y="210" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontStyle=1" edge="1" parent="1" source="72">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="510" y="290" as="sourcePoint"/>
+                        <mxPoint x="570" y="260" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=1" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="570" y="280" as="sourcePoint"/>
+                        <mxPoint x="660" y="320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="73" value="&lt;u&gt;IMU&lt;/u&gt;&lt;br&gt;IMU – ADIS16475-2" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFFF00;" vertex="1" parent="1">
+                    <mxGeometry x="600" y="300" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="70" target="74">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="480" y="180" as="sourcePoint"/>
+                        <mxPoint x="570" y="220" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
