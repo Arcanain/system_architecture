@@ -1,0 +1,17 @@
+@startuml
+start
+:launchファイル起動;
+:map→odom TFを静的公開;
+:base_link→gps TFを静的公開;
+:gnss_preprocessingノード起動;
+
+while (ノード稼働中) is (Yes)
+  :GNSSデータ受信 (/ublox_gps_node/fix);
+  :緯度経度高度(BLH)→地心直交座標(ECEF)へ変換;
+  :ECEF→ENU座標系へ変換;
+  :Generates PoseStamped massage (publish: /gnss_pose);
+  :Update Path message (publish: /gnss_path);
+endwhile(No)
+
+stop
+@enduml

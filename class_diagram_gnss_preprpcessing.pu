@@ -1,0 +1,68 @@
+@startuml GNSS_Preprocessing_Launch_ClassDiagram
+
+package "gnss_preprocessing package" {
+
+  class gnss_preprocessing << (E,#FFAAAA) ROS2 Node >> {
+    + main()
+  }
+
+  class GnssPreprocessingCore << (C,#AAFFAA) ROS2 Class >> {
+    - lat0, lon0, hig0
+    - pi, a, ONE_F, E2
+    --
+    - gnss_pose_pub : Publisher
+    - gnss_path_pub : Publisher
+    - gnss_sub : Subscriber
+    - odom_to_baselink_broadcaster : TF broadcaster
+    --
+    + GnssPreprocessingCore(lat, lon, hig)
+    + ~GnssPreprocessingCore()
+    --
+    - gnssCallback()
+    - blh2ecef()
+    - ecef2enu()
+    - deg2rad(), rad2deg()
+  }
+
+  'class SaveGnssPath << (C,#CCCCFF) ROS2 Node (not launched) >> {
+  '  - gnss_sub : Subscriber
+  '  - output_file : ofstream
+  '  - pre_x, pre_y, dist_thread
+  '  --
+  '  + SaveGnssPath()
+  '  + ~SaveGnssPath()
+  '  --
+  '  - gnss_callback()
+  '}
+}
+
+package "tf2_ros package (External)" {
+  class static_transform_publisher << (E,#FFDDDD) ROS2 Node >> {
+    + static transform publication
+  }
+}
+
+package "ROS2 Topics" {
+  class NavSatFix << (M,#FFFFFF) Message >> 
+  class PoseStamped << (M,#FFFFFF) Message >>
+  class Path << (M,#FFFFFF) Message >>
+}
+
+'--- Relationships ---
+
+'起動エントリー
+gnss_preprocessing --> GnssPreprocessingCore : creates & runs
+
+'CoreクラスのPub/Sub
+GnssPreprocessingCore --> NavSatFix : subscribes ("/ublox_gps_node/fix")
+GnssPreprocessingCore --> PoseStamped : publishes ("/gnss_pose")
+GnssPreprocessingCore --> Path : publishes ("/gnss_path")
+
+'静的TFノード (起動はlaunchから直接)
+static_transform_publisher : map→odom TF
+static_transform_publisher : base_link→gps TF
+
+'SaveGnssPath（今回は未起動）参考情報として記載
+'SaveGnssPath --> PoseStamped : subscribes ("/gnss_pose")
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+
+start
+
+:受信した<br>GNSS生データ<br>(raw_data)を取得;
+
+if (NMEA/RTCM 解析成功?) then (Yes)
+  :タイムスタンプ補正<br>(UTC vs ROS Time);
+  :緯度経度 -> ローカル座標変換;
+  if (外れ値・信頼度チェック) then (正常)
+    :フィルタリングを適用<br>（もしくはスルー）;
+    :結果をパブリッシュ<br>(GnssPreprocMsg);
+  else (異常)
+    :異常値として除外<br>またはログ出力;
+  endif
+else (No)
+  :解析失敗としてログ出力/再接続処理など;
+endif
+
+stop
+
+@enduml
