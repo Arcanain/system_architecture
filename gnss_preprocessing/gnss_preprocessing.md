@@ -4,9 +4,8 @@
 ## 1. ノード概要
 
 ### 役割・目的
-- ROS2環境でGNSSデータをリアルタイムに受信し、地理座標系（緯度・経度・高度）をローカル座標系（ENU座標系）に変換する。
-- TF（Transform）を使用して、座標系間（map→odom、base_link→gps）の静的な関係を定義・公開する。
-- GNSSセンサー情報を加工し、ロボットの自己位置推定や経路計画の基礎データとして利用可能にする。
+- GNSSデータをリアルタイムに受信し、GPS座標系（緯度・経度・高度）をローカル座標系（ENU座標系）に変換する。
+- TF（Transform）を使用して、座標系間（map→odom、base_link→gps）の静的な関係を定義・公開する。（ノードの機能ではないので，どこに記載すべきか議論）
 
 ---
 
@@ -36,10 +35,13 @@
 | トピック名 | 型 | 説明 |
 |---|---|---|
 |  `/gnss_pose` | `geometry_msgs::msg::PoseStamped` | ENU座標系へ変換された現在位置 |
-|  `/gnss_path` | `nav_msgs::msg::Path` | GNSSベースの移動経路 |
+|  `/gnss_path` | `nav_msgs::msg::Path` | GNSSベースの移動経路，全経路 |
 
 
 ### 座標変換（TF）
+
+※必ず必要
+
 
 | 親フレーム | 子フレーム | 説明 |
 |---|---|---|
@@ -50,19 +52,14 @@
 
 ## 3. 処理フロー
 
+![](out/flow_gnss_preprocessing/flow_gnss_preprocessing.svg)
 
 ---
 
 ## 4. ノード起動設定（launchファイル解説）
 
-```python
-Node(
-    package='gnss_preprocessing',
-    executable='gnss_preprocessing',
-    name='gnss_preprocessing',
-    output='screen'
-)
-```
+このセクションは不要かもしれない．少なくともlaunchファイルの解説は不要．
+いろいろな使われ方をするはずなので
 
 - `package`：ROS2パッケージ `gnss_preprocessing`
 - `executable`：実行するバイナリファイル (`gnss_preprocessing`)
@@ -71,23 +68,6 @@ Node(
 
 ### 静的TF設定
 
-```python
-# map → odom
-Node(
-    package='tf2_ros',
-    executable='static_transform_publisher',
-    name='map_to_odom',
-    arguments=['0', '0', '0', '0', '0', '0', '1', 'map', 'odom']
-)
-
-# base_link → gps
-Node(
-    package='tf2_ros',
-    executable='static_transform_publisher',
-    name='baselink_to_navsat',
-    arguments=['0', '0', '0', '0', '0', '0', '1', 'base_link', 'gps']
-)
-```
 
 - `tf2_ros`のstatic_transform_publisherを用いて、座標系間の静的な関係を定義する。
 
@@ -96,57 +76,8 @@ Node(
 ## 5. クラス設計（PlantUMLによる詳細クラス図）
 
 
-![alt text](image.png)
-実装クラス構造に基づいた詳細なクラス設計を以下に示します。
+![alt text](out/class_diagram_gnss_preprpcessing/GNSS_Preprocessing_Launch_ClassDiagram.svg)
 
-```plantuml
-@startuml
-
-class GnssPreprocessingCore {
-  - double lat0
-  - double lon0
-  - double hig0
-  - double pi
-  - double a
-  - double ONE_F
-  - double E2
-  
-  - Publisher<PoseStamped> gnss_pose_pub
-  - Publisher<Path> gnss_path_pub
-  - Subscription<NavSatFix> gnss_sub
-  - TransformBroadcaster odom_to_baselink_broadcaster
-  - Path gnss_path
-
-  + GnssPreprocessingCore(double lat, double lon, double hig)
-  + ~GnssPreprocessingCore()
-
-  - void gnssCallback(NavSatFix::SharedPtr gnss_msg)
-  - Vector3d blh2ecef(double lat_deg, double lon_deg, double h)
-  - Vector3d ecef2enu(Vector3d dest, Vector3d origin)
-  - double deg2rad(double deg)
-  - double rad2deg(double rad)
-}
-
-class SaveGnssPath {
-  - double pre_x
-  - double pre_y
-  - double dist_thread
-  - ofstream output_file
-  - Subscription<PoseStamped> gnss_sub
-
-  + SaveGnssPath()
-  + ~SaveGnssPath()
-  
-  - void gnss_callback(PoseStamped::SharedPtr gnss_msg)
-}
-
-GnssPreprocessingCore --> PoseStamped : publishes
-GnssPreprocessingCore --> Path : publishes
-GnssPreprocessingCore <-- NavSatFix : subscribes
-SaveGnssPath <-- PoseStamped : subscribes
-
-@enduml
-```
 
 ---
 
